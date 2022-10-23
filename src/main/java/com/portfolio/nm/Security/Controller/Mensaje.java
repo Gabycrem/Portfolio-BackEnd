@@ -13,6 +13,7 @@ public class Mensaje {
         this.mensaje = mensaje;
     }
 
+
     public String getMensaje() {
         return mensaje;
     }
@@ -21,5 +22,4 @@ public class Mensaje {
         this.mensaje = mensaje;
     }
 
-   
 }

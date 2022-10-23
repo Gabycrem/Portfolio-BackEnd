@@ -4,6 +4,9 @@
  */
 package com.portfolio.nm.Security.Controller;
 
+import com.portfolio.nm.Security.Dto.JwtDto;
+import com.portfolio.nm.Security.Dto.LoginUsuario;
+import com.portfolio.nm.Security.Dto.NuevoUsuario;
 import com.portfolio.nm.Security.Entity.Rol;
 import com.portfolio.nm.Security.Entity.Usuario;
 import com.portfolio.nm.Security.Enums.RolNombre;
@@ -51,7 +54,7 @@ public class AuthController {
         if (bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("Campos mal puestos o E-mail inválido"),HttpStatus.BAD_REQUEST);
         
-        if(usuarioService.existsByNombreUsuario(nombreUsuario.getNombreUsuario()))
+        if(usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
             return new ResponseEntity(new Mensaje("Nombre de usuario ya existe"),HttpStatus.BAD_REQUEST);
         
         if(usuarioService.existsByEmail(nuevoUsuario.getEmail()))
