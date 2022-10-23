@@ -16,7 +16,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private final static Logger logger = LoggerFactory.getLogger(JwtEntryPoint.class);
+    private final static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
 
     @Autowired
     JwtProvider jwtProvider;
@@ -35,16 +35,15 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         } catch (Exception e) {
-            logger.error("Fallo el metodo doFilterInternal");
+            logger.error("Fallí el metodo doFilterInternal");
         }
         filterChain.doFilter(request, response);
     }
     
     private String getToken(HttpServletRequest request){
         String header = request.getHeader("Authorization");
-        if(header != null && header.startsWith("Beader"))
+        if(header != null && header.startsWith("Bearer"))
             return header.replace("Bearer", "");
         return null;
     }
-
 }

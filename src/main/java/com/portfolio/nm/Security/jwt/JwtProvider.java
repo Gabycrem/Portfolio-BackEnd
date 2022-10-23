@@ -48,10 +48,10 @@ public class JwtProvider {
             logger.error("Token no soportado");
         }catch(ExpiredJwtException e){
             logger.error("Token Expirado");
-        }catch(SignatureException e){
-            logger.error("Firma no válida");
-        }catch(IllegalArgumentException e){
+        }catch (IllegalArgumentException e){
             logger.error("Token vacio");
+        }catch (SignatureException e){
+            logger.error("Firma no válida");
         }
         return false;
     }
