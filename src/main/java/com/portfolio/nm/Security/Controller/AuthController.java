@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin
@@ -48,13 +49,13 @@ public class AuthController {
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         if (bindingResult.hasErrors())
-            return new ResponseEntity(new Mensaje("Campos mal puestos o E-mail inválido"));
+            return new ResponseEntity(new Mensaje("Campos mal puestos o E-mail inválido"),HttpStatus.BAD_REQUEST);
         
         if(usuarioService.existsByNombreUsuario(nombreUsuario.getNombreUsuario()))
-            return new ResponseEntity(new Mensaje("Nombre de usuario que ya existe"));
+            return new ResponseEntity(new Mensaje("Nombre de usuario ya existe"),HttpStatus.BAD_REQUEST);
         
         if(usuarioService.existsByEmail(nuevoUsuario.getEmail()))
-            return new ResponseEntity(new Mensaje("E-mail que ya existe"));
+            return new ResponseEntity(new Mensaje("E-mail que ya existe"),HttpStatus.BAD_REQUEST);
         
         Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
         nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
