@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 public class dtoExperiencia {
     @NotBlank
     private String nombreE;
-    
+    @NotBlank
     private String descripcionE;
 
     public dtoExperiencia() {

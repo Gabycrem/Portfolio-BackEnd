@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/explab/")
-@CrossOrigin(origins = "http://localhots:4200")
+@RequestMapping("/explab")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class ExperienciaController {
     
     @Autowired
@@ -49,7 +49,7 @@ public class ExperienciaController {
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
         }
         sExperiencia.delete(id);
-        return new ResponseEntity(new Mensaje("producto eliminado"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
     }
 
     
